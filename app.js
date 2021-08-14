@@ -3,6 +3,12 @@ const container = document.querySelector(".container");
 const resetButton = document.querySelector("#reset");
 // console.log(resetButton);
 const createNew = document.querySelector("#new-grid");
+const drawMode = document.querySelector("#drawing");
+// console.log(drawMode);
+const eraseMode = document.querySelector("#eraser");
+// console.log(eraseMode);
+
+let currMode = 1; // 1 - draw, 0 - erase
 
 function makeGrid(rows, cols) {
     container.style.setProperty('--grid-rows', rows);
@@ -19,14 +25,32 @@ function deleteGrid() {
     }
 }
 
+function switchMode() {
+    if (currMode === 1) currMode = 0;
+    else currMode = 1;
+}
+
 makeGrid(16,16);
 
-container.addEventListener("mouseover", function(e) {
+let drag = false;
+container.addEventListener("mousedown", function(e) {
     // console.log(e.target.className);
-    if(e.target.className != "container") {
+    // if(e.target.className != "container") {
+    //     e.target.classList.add("drawn");
+    // }
+    drag = true;
+});
+
+container.addEventListener("mousemove", function (e) {
+    if(e.target.className != "container" && drag && currMode === 1) {
         e.target.classList.add("drawn");
     }
+    else if(e.target.className != "container" && drag && currMode === 0) {
+        e.target.classList.remove("drawn");
+    }
 });
+
+container.addEventListener("mouseup", () => drag=false);
 
 resetButton.addEventListener("click", () => {
     const gridItems = document.querySelectorAll(".grid-item");
@@ -42,4 +66,12 @@ createNew.addEventListener("click", () => {
     let num = parseInt(input);
     deleteGrid();
     makeGrid(num,num);
-})
+});
+
+drawMode.addEventListener("click", () => {
+    switchMode();
+});
+
+eraseMode.addEventListener("click", () => {
+    switchMode();
+});
