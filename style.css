@@ -26,11 +26,12 @@ input {
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     border: 1px solid black;
     width: 800px;
-    float: right;
+    max-width: 800px;
+    /* float: right; */
 }
 
 .grid-item {
-    padding: 1em;
+    /* padding: 1em; */
     aspect-ratio: 1;
     border: 1px solid black;
 }
