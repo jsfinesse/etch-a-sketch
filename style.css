@@ -40,7 +40,7 @@ input {
 .grid-item {
     /* padding: 1em; */
     aspect-ratio: 1;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .drawn {
