@@ -25,10 +25,10 @@ function deleteGrid() {
     }
 }
 
-function switchMode() {
-    if (currMode === 1) currMode = 0;
-    else currMode = 1;
-}
+// function switchMode() {
+//     if (currMode === 1) currMode = 0;
+//     else currMode = 1;
+// }
 
 makeGrid(16,16);
 
@@ -69,9 +69,9 @@ createNew.addEventListener("click", () => {
 });
 
 drawMode.addEventListener("click", () => {
-    switchMode();
+    currMode = 1;
 });
 
 eraseMode.addEventListener("click", () => {
-    switchMode();
+    currMode = 0;
 });
